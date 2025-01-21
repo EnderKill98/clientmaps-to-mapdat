@@ -101,8 +101,7 @@ fn clientmap_to_mapdat(input: impl AsRef<Path>, output: impl AsRef<Path>) -> Res
         },
     };
 
-    let mut output_file = std::fs::File::create(output).context("Creating output file")?;
-    //nbt::to_gzip_writer(&mut output_file, &map, Some("")).context("Writing gzip compressed nbt file")?;
+    let output_file = std::fs::File::create(output).context("Creating output file")?;
     let new_bytes = fastnbt::to_bytes(&map).context("Encode nbt file")?;
     let mut encoder = GzEncoder::new(output_file, Compression::fast());
     encoder.write_all(&new_bytes).context("Write gzip compressed nbt file")?;
