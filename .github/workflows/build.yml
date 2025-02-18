@@ -1,0 +1,32 @@
+name: Build Rust Application
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Rust
+        uses: rust-lang/rustup-init@v1
+        with:
+          default-toolchain: stable
+
+      - name: Build
+        run: cargo build --release
+
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: rust-binaries-${{ matrix.os }}
+          path:
+           - "target/release/check-map-dats(.exe)?"
+           - "target/release/convert(.exe*)?"
