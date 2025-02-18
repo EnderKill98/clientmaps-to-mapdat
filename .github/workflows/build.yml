@@ -28,4 +28,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: binaries-${{ matrix.os }}
-          path: target/release/(convert|check-map-dats)(.exe)?
+          path: |
+            target/release/check-map-dats(.exe)?
+            target/release/convert(.exe)?
