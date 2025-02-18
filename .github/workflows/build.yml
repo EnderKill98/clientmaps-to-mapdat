@@ -29,5 +29,7 @@ jobs:
         with:
           name: binaries-${{ matrix.os }}
           path: |
-            target/release/check-map-dats(.exe)?
-            target/release/convert(.exe)?
+            target/release/check-map-dats
+            target/release/check-map-dats.exe
+            target/release/convert
+            target/release/convert.exe
